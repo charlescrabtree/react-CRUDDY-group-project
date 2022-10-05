@@ -1,7 +1,8 @@
-import { checkError, client } from 'client';
+import { checkError, client } from './client';
 
 export async function getPosts() {
   const resp = await client.from('chilis_data').select('*');
+  console.log('resp', resp);
   return checkError(resp);
 }
 
