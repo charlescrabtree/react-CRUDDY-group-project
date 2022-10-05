@@ -1,7 +1,14 @@
 import React from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
-export default function PostCard() {
+export default function PostCard({ title, description, user_id, id }) {
+//   const { user } = useContext(UserContext);
+
   return (
-    <div>PostCard goes here</div>
+    <div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
   );
 }
