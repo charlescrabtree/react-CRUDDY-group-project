@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import { useUser } from '../context/UserContext';
-import { authUser } from '../services/auth';
-import { Redirect, useParams } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
+import { authUser } from '../../services/auth';
+import { Redirect } from 'react-router-dom';
 
 export default function Auth() {
-  const { type } = useParams();
+  // const { type } = useParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { user, setUser } = useUser();
+  const { user, setUser } = useContext(UserContext);
 
   const clickHandler = async () => {
-    const userResp = await authUser(email, password, type);
+    // add in type later
+    const userResp = await authUser(email, password);
     setUser(userResp);
     setEmail('');
     setPassword('');
@@ -32,7 +33,7 @@ export default function Auth() {
       </div>
       <button onClick={clickHandler}>Submit</button>
     </div>
-  )
+  );
 
 
 }
