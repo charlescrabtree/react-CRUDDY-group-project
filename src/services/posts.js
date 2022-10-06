@@ -5,8 +5,8 @@ export async function getPosts() {
   return checkError(resp);
 }
 
-export async function createPost(title, description) {
-  const resp = await client.from('chilis_data').insert({ title, description }).single();
+export async function createPost(user_id, title, description) {
+  const resp = await client.from('chilis_data').insert({ user_id, title, description }).single();
   return checkError(resp);
 }
 
