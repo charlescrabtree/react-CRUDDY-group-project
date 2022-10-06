@@ -1,7 +1,12 @@
-import { checkError, client } from 'client';
+import { checkError, client } from './client';
 
 export async function getPosts() {
   const resp = await client.from('chilis_data').select('*');
+  return checkError(resp);
+}
+
+export async function createPost(user_id, title, description) {
+  const resp = await client.from('chilis_data').insert({ user_id, title, description }).single();
   return checkError(resp);
 }
 
@@ -11,6 +16,6 @@ export async function getPostDetail(id) {
 }
 
 export async function updatePost(id, title, description) {
-  const resp = await client.from('chilis_data').update({ title, description }).match({ id });
+  const resp = await client.from('chilis_data').update({ title, description }).match({ id }).single();
   return checkError(resp);
 }

@@ -10,6 +10,7 @@ export function usePosts() {
     const fetchData = async () => {
       try {
         const data = await getPosts();
+        console.log('data', data);
         setPosts(data);
         setLoading(false);
       } catch (e) {
