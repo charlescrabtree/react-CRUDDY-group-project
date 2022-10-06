@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { createPost } from '../../services/posts';
 
@@ -8,16 +9,19 @@ export default function PostForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const { user } = useContext(UserContext);
+  const history = useHistory();
 
   const handleClick = async () => {
     try { 
-      const response = await createPost(user.id, title, description);
+      await createPost(user.id, title, description);
       setTitle('');
       setDescription('');
     } catch (e) {
         //eslint-disable-next-line no-console
       console.error(e.message);
     }
+    
+    history.push('/posts');
   };
 
   return (
