@@ -2,7 +2,11 @@ import { checkError, client } from './client';
 
 export async function getPosts() {
   const resp = await client.from('chilis_data').select('*');
-  console.log('resp', resp);
+  return checkError(resp);
+}
+
+export async function createPost(title, description) {
+  const resp = await client.from('chilis_data').insert({ title, description }).single();
   return checkError(resp);
 }
 
