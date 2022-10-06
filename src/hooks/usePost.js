@@ -22,5 +22,5 @@ export function usePost(id) {
     fetchData();
   }, [id]);
   
-  return { postDetail, setPostDetail, loading, error, setError };
+  return { postDetail, setPostDetail, loading, setLoading, error, setError };
 }
