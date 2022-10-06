@@ -3,16 +3,20 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { deletePost } from '../../services/posts';
+import { usePosts } from '../../hooks/usePosts';
+
 
 export default function PostCard({ title, description, user_id, id }) {
   const { user } = useContext(UserContext);
   const owner = user.id === user_id;
 
+  const { posts, setPosts } = usePosts();
   const handleDelete = async () => {
     try {
 
       await deletePost(id);
-      history.push('/posts');
+      const result = posts.filter(post => post.id !== id);
+      setPosts(result);
     } catch (e) {
       //eslint-disable-next-line no-console
       console.error(e.message);
