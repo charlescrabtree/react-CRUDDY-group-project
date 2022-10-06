@@ -1,19 +1,15 @@
 import React from 'react';
 import { useContext } from 'react';
-import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { usePost } from '../../hooks/usePost';
 import { updatePost } from '../../services/posts';
 
 export default function EditPost() {
-  // const [title, setTitle] = useState('');
-  // const [description, setDescription] = useState('');
   const { id } = useParams();
   const { user } = useContext(UserContext);
   const history = useHistory();
-  const { postDetail, setPostDetail, loading, setLoading, error } = usePost(id);
-  console.log('postDetail', postDetail);
+  const { postDetail, setPostDetail, loading, error } = usePost(id);
 
   if (!user) {
     history.push('/posts');
@@ -25,8 +21,7 @@ export default function EditPost() {
   const handleClick = async () => {
     try {
        
-      const resp = await updatePost(postDetail.id, postDetail.title, postDetail.description);
-      console.log('resp', resp);
+      await updatePost(postDetail.id, postDetail.title, postDetail.description);
       history.push('/posts');
     } catch (e) {
         //eslint-disable-next-line no-console

@@ -14,6 +14,7 @@ export default function PostCard({ title, description, user_id, id }) {
       {owner && (
         <p>
           <Link to={`/posts/edit/${id}`}>Edit </Link>
+          <button className="delete">Delete</button>
         </p>
       )}
     </div>
