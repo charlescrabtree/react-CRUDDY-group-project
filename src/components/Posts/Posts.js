@@ -4,6 +4,8 @@ import PostCard from './PostCard';
 import { deletePost } from '../../services/posts';
 import { UserContext } from '../../context/UserContext';
 import { Redirect } from 'react-router-dom';
+import './Posts.css';
+
 
 export default function Posts() {
   const { loading, error, posts, setPosts } = usePosts();
@@ -25,7 +27,7 @@ export default function Posts() {
     }
   }; 
   return (
-    <div>
+    <div className="main">
       {posts.map((post) => (
         <PostCard key={post.id} handleDelete={handleDelete} {...post} />
       ))}
