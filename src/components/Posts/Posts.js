@@ -8,22 +8,21 @@ export default function Posts() {
   if (loading) return <h1>Loading</h1>;
   if (error) return <h1>{error}</h1>;
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     try {
-
       await deletePost(id);
       const result = posts.filter(post => post.id !== id);
-      await setPosts(result);
-
+      setPosts(result);
     } catch (e) {
       //eslint-disable-next-line no-console
       console.error(e.message);
     }
   }; 
+
   return (
     <div>
       {posts.map((post) => (
-        <PostCard key={post.id} {...post} />
+        <PostCard key={post.id} handleDelete={handleDelete} {...post} />
       ))}
     </div>
   );
