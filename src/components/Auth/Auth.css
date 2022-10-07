@@ -1,0 +1,20 @@
+@font-face {
+  font-family: Barmeno-Bold;
+  src: url('../../whatever-suits-you.otf');
+}
+
+.form-controls {
+  font-family: Barmeno-Bold;
+  font-size: 1.2rem;
+  margin: 10px;
+}
+
+.submit {
+  font-family: Barmeno-Bold;
+  font-size: 1.2rem;
+}
+
+.input {
+  font-family: Barmeno-Bold;
+  font-size: 1.2rem; 
+}

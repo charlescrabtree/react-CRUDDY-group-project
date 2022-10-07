@@ -16,8 +16,9 @@
     margin: 10px;
     box-shadow: 3px 6px #008457;
     -webkit-box-shadow: 2px 2px 3px 0px #008457;
-    background-color: rgba(0,0,0,.2);
+    background-color: rgba(86, 86, 86, 0.5);
     font-family: Barmeno-Bold;
+    width: 250px;
 }
 
 .edit {
@@ -65,5 +66,39 @@ p {
     font-family: Barmeno-Bold;
     font-size: 1.2rem; 
 }
+
+/* p:hover, h1:hover, a:hover {
+    background-color: yellow;
+    
+  } */
+
+.title {
+    font-family: Barmeno-Bold;
+    font-size: 1.2rem; 
+}
+
+.description {
+    font-family: Barmeno-Bold;
+    font-size: 1.2rem; 
+}
+
+p:hover {
+    animation: smoke .001s linear forwards;
+}
+
+
+@keyframes smoke {
+    100% {
+        transform: rotate(0deg) translateY(0px);
+        opacity: 1;
+        filter:blur(1px);
+    }
+    0% {
+      transform: rotate(-90deg) translateY(-200px);
+        opacity: 0;
+        filter:blur(20px);
+    }
+}
+
 
 /* eggshell rgb(240, 234, 214) */

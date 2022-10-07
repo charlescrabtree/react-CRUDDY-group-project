@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { usePost } from '../../hooks/usePost';
 import { updatePost } from '../../services/posts';
+import './Posts.css';
 
 export default function EditPost() {
   const { id } = useParams();
@@ -33,11 +34,11 @@ export default function EditPost() {
   return (
     <>
       <div>
-        <input placeholder="title" type="text" value={postDetail.title} onChange={(e) => setPostDetail((prevState) => ({ ...prevState, title: e.target.value }))} />
-        <input placeholder="description" type="text" value={postDetail.description} onChange={(e) => setPostDetail((prevState) => ({ ...prevState, description: e.target.value }))} />
+        <input className="title" placeholder="title" type="text" value={postDetail.title} onChange={(e) => setPostDetail((prevState) => ({ ...prevState, title: e.target.value }))} />
+        <input className="description" placeholder="description" type="text" value={postDetail.description} onChange={(e) => setPostDetail((prevState) => ({ ...prevState, description: e.target.value }))} />
       </div>
       <div>
-        <button onClick={handleClick}>ADD</button>
+        <button className="add" onClick={handleClick}>EDIT</button>
       </div>
     </>
   );
