@@ -1,6 +1,69 @@
+@font-face {
+    font-family: Barmeno-Bold;
+    src: url('../../whatever-suits-you.otf');
+}
+
 .main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
+.post {
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 10px;
+    box-shadow: 3px 6px #008457;
+    -webkit-box-shadow: 2px 2px 3px 0px #008457;
+    background-color: rgba(0,0,0,.2);
+    font-family: Barmeno-Bold;
+}
+
+.edit {
+    border: solid black 1px;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin: 5px;
+    color: black;
+    background-color: rgb(236, 236, 236);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.delete {
+    border: solid black 1px;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin: 5px;
+    font-family: Barmeno-Bold;
+    font-size: 1.2rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+p {
+    padding: 2px 5px;
+}
+
+.input {
+    border: solid black 1px;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin: 5px;
+    font-family: Barmeno-Bold;
+    font-size: 1.2rem; 
+}
+
+.add {
+    border: solid black 1px;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin: 5px;
+    font-family: Barmeno-Bold;
+    font-size: 1.2rem; 
+}
+
+/* eggshell rgb(240, 234, 214) */

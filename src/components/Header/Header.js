@@ -24,26 +24,26 @@ export default function Header() {
           {!user && (
             <>
               <div>
-                <Link to="/auth/sign-in">
+                <Link className="link" to="/auth/sign-in">
                   Sign in
                 </Link>
               </div>
               <div>
-                <Link to="/auth/sign-up">
+                <Link className="link" to="/auth/sign-up">
                   Sign up
                 </Link>
               </div>
             </>
           )}
           <div>
-            <Link to="/auth/sign-in" onClick={handleLogout}>
+            <Link className="link" to="/auth/sign-in" onClick={handleLogout}>
               Sign out
             </Link>
           </div>
           {user && (
             <>
               <div>
-                <Link to="/posts/new">
+                <Link className="link" to="/posts/new">
               New Post
                 </Link>
               </div>
@@ -51,7 +51,7 @@ export default function Header() {
 
           )}
           <div>
-            <Link to="/posts">
+            <Link className="link" to="/posts">
               Posts
             </Link>
           </div>
