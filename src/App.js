@@ -4,10 +4,12 @@ import Posts from './components/Posts/Posts';
 import PostForm from './components/Posts/PostForm';
 import { Route, Switch } from 'react-router-dom';
 import EditPost from './components/Posts/EditPost';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Switch>
         <Route path="/posts/edit/:id" component={EditPost} />
         <Route path="/posts/new" component={PostForm} />
