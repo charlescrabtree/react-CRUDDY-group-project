@@ -16,27 +16,48 @@ export default function Header() {
       console.error(e.message);     
     }
   };
-  console.log(user);
   return (
-    <header>
-      <nav>
-        Hi, welcome to Chilis!
-        <div>
-          <Link to="/auth/sign-in">
-            Sign in
-          </Link>
-        </div>
-        <div>
-          <Link to="/auth/sign-up">
-            Sign up
-          </Link>
-        </div>
-        <div>
-          <Link to="/auth/sign-in" onClick={handleLogout}>
-            Sign out
-          </Link>
-        </div>
-      </nav>
-    </header>
+    <>
+      <header>
+        <nav>
+          Hi, welcome to Chilis!
+          {!user && (
+            <>
+              <div>
+                <Link to="/auth/sign-in">
+                  Sign in
+                </Link>
+              </div>
+              <div>
+                <Link to="/auth/sign-up">
+                  Sign up
+                </Link>
+              </div>
+            </>
+          )}
+          <div>
+            <Link to="/auth/sign-in" onClick={handleLogout}>
+              Sign out
+            </Link>
+          </div>
+          {user && (
+            <>
+              <div>
+                <Link to="/posts/new">
+              New Post
+                </Link>
+              </div>
+            </>
+
+          )}
+          <div>
+            <Link to="/posts">
+              Posts
+            </Link>
+          </div>
+
+        </nav>
+      </header>
+    </>
   );
 }
