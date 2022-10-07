@@ -10,7 +10,6 @@ export function usePosts() {
     const fetchData = async () => {
       try {
         const data = await getPosts();
-        console.log('data', data);
         setPosts(data);
         setLoading(false);
       } catch (e) {
@@ -20,5 +19,5 @@ export function usePosts() {
     };
     fetchData();
   }, []);
-  return { posts, error, loading };
+  return { posts, setPosts, error, loading };
 }

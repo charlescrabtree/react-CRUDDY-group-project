@@ -19,3 +19,8 @@ export async function updatePost(id, title, description) {
   const resp = await client.from('chilis_data').update({ title, description }).match({ id }).single();
   return checkError(resp);
 }
+
+export async function deletePost(id) {
+  const resp = await client.from('chilis_data').delete({ id }).match({ id }).single();
+  return checkError(resp);
+}

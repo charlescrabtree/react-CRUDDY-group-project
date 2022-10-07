@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 
-export default function PostCard({ title, description, user_id, id }) {
+
+export default function PostCard({ title, description, user_id, id, handleDelete }) {
   const { user } = useContext(UserContext);
   const owner = user.id === user_id;
 
@@ -14,7 +15,7 @@ export default function PostCard({ title, description, user_id, id }) {
       {owner && (
         <p>
           <Link to={`/posts/edit/${id}`}>Edit </Link>
-          <button className="delete">Delete</button>
+          <button className="delete" onClick={()=>handleDelete(id) }>Delete</button>
         </p>
       )}
     </div>

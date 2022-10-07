@@ -20,7 +20,7 @@ export default function EditPost() {
 
   const handleClick = async () => {
     try {
-       
+
       await updatePost(postDetail.id, postDetail.title, postDetail.description);
       history.push('/posts');
     } catch (e) {
