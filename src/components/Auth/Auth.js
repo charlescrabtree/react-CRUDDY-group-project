@@ -3,6 +3,7 @@ import { UserContext } from '../../context/UserContext';
 import { authUser } from '../../services/auth';
 import { Redirect } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import './Auth.css';
 
 export default function Auth() {
   const { type } = useParams();
@@ -25,13 +26,13 @@ export default function Auth() {
     <div>
       <div className="form-controls">
         <label>Email:</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input className="input" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div className="form-controls">
         <label>Password:</label>
-        <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
-      <button onClick={clickHandler}>Submit</button>
+      <button className="submit" onClick={clickHandler}>Submit</button>
     </div>
   );
 }
