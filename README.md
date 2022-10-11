@@ -53,4 +53,4 @@ If you work on more than one feature at a time, you are guaranteed to multiply y
 - Where should each piece of state live? How are you going to get data from where it lives to where it needs to be?
 
 ## Planning artifact
-- https://github.com/charlescrabtree/react-CRUDDY-group-project.git
+- https://whimsical.com/crud-group-project-9EwoNANBZTDCP1rt94Utaw
