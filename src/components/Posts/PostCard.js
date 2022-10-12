@@ -16,7 +16,6 @@ export default function PostCard({ title, description, user_id, id, handleDelete
       {owner && (
         <p>
           <Link className="edit" to={`/posts/edit/${id}`}>Edit </Link>
-          <h1></h1>
           <button className="delete" onClick={()=>handleDelete(id) }>Delete</button>
         </p>
       )}
