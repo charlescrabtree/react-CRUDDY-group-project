@@ -130,7 +130,7 @@ test('signed in can create new posts', async () => {
       </MemoryRouter>
     </UserProvider>
   );
-  const link = await screen.getByRole('link', { name: 'new-post' });
+  const link = await screen.getByRole('link', { name: 'New Post' });
   fireEvent.click(link);
 
   await screen.findByText(/ADD/i);

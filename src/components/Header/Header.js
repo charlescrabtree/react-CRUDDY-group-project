@@ -43,7 +43,7 @@ export default function Header() {
           {user && (
             <>
               <div>
-                <Link aria-label="new-post" className="link" to="/posts/new">
+                <Link className="link" to="/posts/new">
               New Post
                 </Link>
               </div>
