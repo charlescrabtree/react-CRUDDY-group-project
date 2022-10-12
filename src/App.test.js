@@ -69,11 +69,11 @@ const fakePosts = [
     description: '#1 description',
     user_id: '0dab2c65-5911-469c-9f12-8fb47ebe52f2',
   },
-  { id: 2, 
-    title: 'Fake Post #2', 
-    description: '#2 description',
-    user_id: '0dab2c65-5911-469c-9f12-8fb47ebe52f2', 
-  },
+  // { id: 2, 
+  //   title: 'Fake Post #2', 
+  //   description: '#2 description',
+  //   user_id: '0dab2c65-5911-469c-9f12-8fb47ebe52f2', 
+  // },
 ];
 
 // test 3
@@ -93,7 +93,7 @@ test('signed in users should see a list of posts at /posts', async () => {
   // console.log(edit);
   await screen.findByText(/Fake Post #1/i);
   await screen.findAllByText(/Edit/i);
-  await screen.findByText(/Fake Post #2/i);
+  // await screen.findByText(/Fake Post #2/i);
 });
 
 
@@ -104,16 +104,35 @@ test('signed in users should see a list of posts at /posts', async () => {
 
 // test 4
 // user can edit post
-
-test('signed in can make new posts', async () => {
+test('signed in can edit posts', async () => {
   authFns.getUser.mockReturnValue(mockUser);
   postFns.getPosts.mockReturnValue(fakePosts);
   render(
     <UserProvider>
-      <MemoryRouter initialEntries={['/posts/edit']}>
+      <MemoryRouter initialEntries={['/posts']}>
         <App />
       </MemoryRouter>
     </UserProvider>
   );
+  const button = await screen.findByRole('button');
+  fireEvent.click(button);
   await screen.findByText(/Edit/i);
+});
+
+// test 5
+// user can create new post
+test('signed in can create new posts', async () => {
+  authFns.getUser.mockReturnValue(mockUser);
+  render(
+    <UserProvider>
+      <MemoryRouter initialEntries={['/posts']}>
+        <App />
+      </MemoryRouter>
+    </UserProvider>
+  );
+  const link = await screen.getByRole('link', { name: 'new-post' });
+  fireEvent.click(link);
+
+  await screen.findByText(/ADD/i);
+
 });
