@@ -103,6 +103,10 @@ test('signed in users should see a list of posts at /posts', async () => {
 });
 
 
+
+
+
+
 // test 4
 // user can edit post
 test('signed in can edit posts', async () => {
@@ -110,12 +114,12 @@ test('signed in can edit posts', async () => {
   postFns.getPosts.mockReturnValue(fakePosts);
   render(
     <UserProvider>
-      <MemoryRouter initialEntries={['/posts/edit']}>
+      <MemoryRouter initialEntries={['/posts']}>
         <App />
       </MemoryRouter>
     </UserProvider>
   );
-  const link = await screen.findByRole('edit', { name: 'edit' });
+  const link = await screen.findByLabelText('edit');
   act(() => {
     fireEvent.click(link);
   });
@@ -124,6 +128,15 @@ test('signed in can edit posts', async () => {
   expect(screen.queryByRole('button', { name: 'Delete' })).not.toBeInTheDocument();
 
 });
+
+
+
+
+
+
+
+
+
 
 // test 5
 // user can create new post
