@@ -16,7 +16,7 @@ export default function PostCard({ title, description, user_id, id, handleDelete
       {owner && (
         <p>
           <Link aria-label="edit" className="edit" id="edit" to={`/posts/edit/${id}`}>Edit</Link>
-          <button className="delete" onClick={()=>handleDelete(id) }>Delete</button>
+          <button id="delete-button" className="delete" onClick={()=>handleDelete(id) }>Delete</button>
         </p>
       )}
     </div>

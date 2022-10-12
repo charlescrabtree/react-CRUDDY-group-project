@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import { UserProvider } from './context/UserContext';
@@ -52,14 +53,18 @@ test('user can long in', async () => {
   ); 
   
   const emailInput = screen.getByLabelText('Email:');
-  fireEvent.change(emailInput, { target: { value: 'random@example.com' } });
+  act(() => {
+    fireEvent.change(emailInput, { target: { value: 'random@example.com' } });
+  });
   expect(emailInput.value).toBe('random@example.com');
-
   const passwordInput = screen.getByLabelText('Password:');
-  fireEvent.change(passwordInput, { target: { value: '123456' } });
-
+  act(() => {
+    fireEvent.change(passwordInput, { target: { value: '123456' } });
+  });
   const button = screen.getByRole('button');
-  fireEvent.click(button);
+  act(() => {
+    fireEvent.click(button);
+  });
 });
 
 const fakePosts = [
@@ -111,7 +116,9 @@ test('signed in can edit posts', async () => {
     </UserProvider>
   );
   const button = await screen.findByRole('button');
-  fireEvent.click(button);
+  act(() => {
+    fireEvent.click(button);
+  });
   const editEl = await screen.findByText(/Edit/i);
   expect(editEl).toBeInTheDocument();
 });
@@ -128,7 +135,9 @@ test('signed in can create new posts', async () => {
     </UserProvider>
   );
   const link = await screen.getByRole('link', { name: 'New Post' });
-  fireEvent.click(link);
+  act(() => {
+    fireEvent.click(link);
+  });
   const addEl = await screen.findByText(/ADD/i);
   expect(addEl).toBeInTheDocument();
 });
@@ -145,7 +154,9 @@ test('user can sign out of /posts', async () => {
     </UserProvider>
   );
   const link = await screen.getByRole('link', { name: 'Sign out' });
-  fireEvent.click(link);
+  act(() => {
+    fireEvent.click(link);
+  });
   const submitEl = await screen.findByText(/Submit/i);
   expect(submitEl).toBeInTheDocument();
 });
@@ -162,11 +173,12 @@ test('user can delete post', async () => {
       </MemoryRouter>
     </UserProvider>
   );
+  // ensure fake post 1 loads
   await screen.findByText(/Fake Post #1/i);
-
-  // below code passes test but it should fail, since after we delete the post we shouldnt be able to find text 'delete'
+  // find delete button
   const button = await screen.findByRole('button', { name: 'Delete' });
-  fireEvent.click(button);
-  const deleteEl = await screen.findByText(/Delete/i);
-  expect(deleteEl).toBeInTheDocument();
+  act(() => {
+    fireEvent.click(button);
+  });
+  expect(await screen.queryByRole('link', { name: 'Edit' })).not.toBeInTheDocument();
 });
