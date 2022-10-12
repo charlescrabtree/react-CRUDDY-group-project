@@ -25,8 +25,8 @@ export default function Auth() {
   return (
     <div>
       <div className="form-controls">
-        <label>Email:</label>
-        <input className="input" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor='email'>Email:</label>
+        <input className="input" type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div className="form-controls">
         <label>Password:</label>
