@@ -25,12 +25,12 @@ export default function Auth() {
   return (
     <div>
       <div className="form-controls">
-        <label>Email:</label>
-        <input className="input" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor='email'>Email:</label>
+        <input className="input" type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div className="form-controls">
-        <label>Password:</label>
-        <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <label htmlFor='password'>Password:</label>
+        <input className="input" type="password" id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
       <button className="submit" onClick={clickHandler}>Submit</button>
     </div>
