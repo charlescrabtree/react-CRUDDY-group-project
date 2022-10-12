@@ -15,7 +15,7 @@ function App() {
         <Route path="/posts/new" component={PostForm} />
         <Route path="/posts" component={Posts} />
         <Route path="/auth/:type" component={Auth} />
-        {/* <Route exact path="/"></Route> */}
+        <Route exact path="/" component={Auth} />
       </Switch>
     </div>
   );
