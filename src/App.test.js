@@ -132,7 +132,21 @@ test('signed in can create new posts', async () => {
   );
   const link = await screen.getByRole('link', { name: 'New Post' });
   fireEvent.click(link);
-
   await screen.findByText(/ADD/i);
+});
 
+// test 6
+// user can sign out of /posts
+test('user can sign out of /posts', async () => {
+  authFns.getUser.mockReturnValue(mockUser);
+  render(
+    <UserProvider>
+      <MemoryRouter initialEntries={['/posts']}>
+        <App />
+      </MemoryRouter>
+    </UserProvider>
+  );
+  const link = await screen.getByRole('link', { name: 'Sign out' });
+  fireEvent.click(link);
+  await screen.findByText(/Submit/i);
 });
