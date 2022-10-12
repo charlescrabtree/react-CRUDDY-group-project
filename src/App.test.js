@@ -110,17 +110,19 @@ test('signed in can edit posts', async () => {
   postFns.getPosts.mockReturnValue(fakePosts);
   render(
     <UserProvider>
-      <MemoryRouter initialEntries={['/posts']}>
+      <MemoryRouter initialEntries={['/posts/edit']}>
         <App />
       </MemoryRouter>
     </UserProvider>
   );
-  const button = await screen.findByRole('button');
+  const link = await screen.findByRole('edit', { name: 'edit' });
   act(() => {
-    fireEvent.click(button);
+    fireEvent.click(link);
   });
-  const editEl = await screen.findByText(/Edit/i);
-  expect(editEl).toBeInTheDocument();
+  // const editEl = await screen.findByText(/Edit/i);
+  // expect(editEl).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Delete' })).not.toBeInTheDocument();
+
 });
 
 // test 5
@@ -134,7 +136,7 @@ test('signed in can create new posts', async () => {
       </MemoryRouter>
     </UserProvider>
   );
-  const link = await screen.getByRole('link', { name: 'New Post' });
+  const link = await screen.findByRole('link', { name: 'New Post' });
   act(() => {
     fireEvent.click(link);
   });
@@ -168,7 +170,7 @@ test('user can delete post', async () => {
   postFns.getPosts.mockReturnValue(fakePosts);
   render(
     <UserProvider>
-      <MemoryRouter initialEntries={['/posts']}>
+      <MemoryRouter initialEntries={['/posts/edit']}>
         <App />
       </MemoryRouter>
     </UserProvider>
