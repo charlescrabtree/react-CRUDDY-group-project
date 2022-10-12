@@ -43,3 +43,25 @@ test('user can log in', async () => {
   // const headerText = await screen.findByText('Hi, welcome to Chilis!');
   // expect(headerText).toBeInTheDocument();
 });
+
+const fakePosts = [
+  { id: 1, title: 'This is a fake post #1', description: 'This is a fake description #1' },
+  { id: 2, title: 'This is also a fake post #2', description: 'This is a fake description #2' },
+];
+
+test('posts display', async () => {
+  authFns.getUser.mockReturnValue(mockUser);
+  postFns.getPosts.mockReturnValue(fakePosts);
+
+  render(
+    <UserProvider>
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    </UserProvider>
+  );
+
+  await screen.findByText(/fake post #1/i);
+  await screen.findByText(/fake post #2/i);
+});
+
