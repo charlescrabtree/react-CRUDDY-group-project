@@ -16,6 +16,22 @@ const mockUser = {
   email: 'random@example.com',
 };
 
+test('renders header', () => {
+
+  render(
+    <UserProvider>
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    </UserProvider>
+  );
+
+  const headerElement = screen.getByText(/welcome/i);
+  expect(headerElement).toBeInTheDocument();
+
+});
+
+
 test('user can log in', async () => {
   authFns.getUser.mockReturnValue(null);
   authFns.authUser.mockReturnValue(mockUser);
