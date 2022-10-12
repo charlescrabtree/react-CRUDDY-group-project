@@ -89,8 +89,11 @@ test('signed in users should see a list of posts at /posts', async () => {
       </MemoryRouter>
     </UserProvider>
   );
-  await screen.findByText(/Fake Post #1/i);
-  await screen.findAllByText(/Edit/i);
+  const postEl = await screen.findByText(/Fake Post #1/i);
+  expect(postEl).toBeInTheDocument();
+
+  const editEl = await screen.findByText(/Edit/i);
+  expect(editEl).toBeInTheDocument();
   // await screen.findByText(/Fake Post #2/i);
 });
 
@@ -109,7 +112,8 @@ test('signed in can edit posts', async () => {
   );
   const button = await screen.findByRole('button');
   fireEvent.click(button);
-  await screen.findByText(/Edit/i);
+  const editEl = await screen.findByText(/Edit/i);
+  expect(editEl).toBeInTheDocument();
 });
 
 // test 5
@@ -125,7 +129,8 @@ test('signed in can create new posts', async () => {
   );
   const link = await screen.getByRole('link', { name: 'New Post' });
   fireEvent.click(link);
-  await screen.findByText(/ADD/i);
+  const addEl = await screen.findByText(/ADD/i);
+  expect(addEl).toBeInTheDocument();
 });
 
 // test 6
@@ -141,7 +146,8 @@ test('user can sign out of /posts', async () => {
   );
   const link = await screen.getByRole('link', { name: 'Sign out' });
   fireEvent.click(link);
-  await screen.findByText(/Submit/i);
+  const submitEl = await screen.findByText(/Submit/i);
+  expect(submitEl).toBeInTheDocument();
 });
 
 // test 7
@@ -161,5 +167,6 @@ test('user can delete post', async () => {
   // below code passes test but it should fail, since after we delete the post we shouldnt be able to find text 'delete'
   const button = await screen.findByRole('button', { name: 'Delete' });
   fireEvent.click(button);
-  await screen.findByText(/Delete/i);
+  const deleteEl = await screen.findByText(/Delete/i);
+  expect(deleteEl).toBeInTheDocument();
 });
