@@ -37,7 +37,7 @@ test('renders header', async () => {
   expect(signOutElem).toBeInTheDocument();
 });
 
-//test 1
+//test 2
 //log in
 
 test('user can long in', async () => {
@@ -76,6 +76,9 @@ const fakePosts = [
   },
 ];
 
+// test 3
+// users can see all posts
+
 test('signed in users should see a list of posts at /posts', async () => {
   authFns.getUser.mockReturnValue(mockUser);
   postFns.getPosts.mockReturnValue(fakePosts);
@@ -91,4 +94,26 @@ test('signed in users should see a list of posts at /posts', async () => {
   await screen.findByText(/Fake Post #1/i);
   await screen.findAllByText(/Edit/i);
   await screen.findByText(/Fake Post #2/i);
+});
+
+
+
+
+
+
+
+// test 4
+// user can edit post
+
+test('signed in can make new posts', async () => {
+  authFns.getUser.mockReturnValue(mockUser);
+  postFns.getPosts.mockReturnValue(fakePosts);
+  render(
+    <UserProvider>
+      <MemoryRouter initialEntries={['/posts/edit']}>
+        <App />
+      </MemoryRouter>
+    </UserProvider>
+  );
+  await screen.findByText(/Edit/i);
 });
