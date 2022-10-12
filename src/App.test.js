@@ -89,17 +89,10 @@ test('signed in users should see a list of posts at /posts', async () => {
       </MemoryRouter>
     </UserProvider>
   );
-  // const edit = await screen;
-  // console.log(edit);
   await screen.findByText(/Fake Post #1/i);
   await screen.findAllByText(/Edit/i);
   // await screen.findByText(/Fake Post #2/i);
 });
-
-
-
-
-
 
 
 // test 4
@@ -149,4 +142,24 @@ test('user can sign out of /posts', async () => {
   const link = await screen.getByRole('link', { name: 'Sign out' });
   fireEvent.click(link);
   await screen.findByText(/Submit/i);
+});
+
+// test 7
+// user can delete post
+test('user can delete post', async () => {
+  authFns.getUser.mockReturnValue(mockUser);
+  postFns.getPosts.mockReturnValue(fakePosts);
+  render(
+    <UserProvider>
+      <MemoryRouter initialEntries={['/posts']}>
+        <App />
+      </MemoryRouter>
+    </UserProvider>
+  );
+  await screen.findByText(/Fake Post #1/i);
+
+  // below code passes test but it should fail, since after we delete the post we shouldnt be able to find text 'delete'
+  const button = await screen.findByRole('button', { name: 'Delete' });
+  fireEvent.click(button);
+  await screen.findByText(/Delete/i);
 });
